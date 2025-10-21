@@ -5,18 +5,22 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '10.0.x'
-          include-prerelease: true
+          dotnet-version: '9.0.x'
 
       - name: Restore
         run: dotnet restore ExampleProject.Wasm/ExampleProject.Wasm.csproj
