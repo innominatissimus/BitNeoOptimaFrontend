@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ExampleProject.Wasm",
   "resources": {
-    "hash": "sha256-Q8ebYkhSbmAmvk/Cg16zAF/c/IMrQlkoiijaAmBZx0M=",
+    "hash": "sha256-nad9fAnPp8Tw+cSCeXeOPKJ+zG7fbEyLWGF47A7NVUs=",
     "fingerprinting": {
       "Accelist.FluentValidation.Blazor.pr7y4ods17.wasm": "Accelist.FluentValidation.Blazor.wasm",
       "ADRaffy.ENSNormalize.wa9ywt4h2t.wasm": "ADRaffy.ENSNormalize.wasm",
@@ -94,8 +94,8 @@
       "System.8rv0tdtrxz.wasm": "System.wasm",
       "netstandard.admgtgj808.wasm": "netstandard.wasm",
       "System.Private.CoreLib.1rrcy5jvxe.wasm": "System.Private.CoreLib.wasm",
-      "Nethereum.Erc20.Blazor.b3dii2pt06.wasm": "Nethereum.Erc20.Blazor.wasm",
-      "ExampleProject.Wasm.g2hdi91st7.wasm": "ExampleProject.Wasm.wasm",
+      "Nethereum.Erc20.Blazor.msklfxm14s.wasm": "Nethereum.Erc20.Blazor.wasm",
+      "ExampleProject.Wasm.bvebvsz8u9.wasm": "ExampleProject.Wasm.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.l4ptthxatg.js": "dotnet.native.js",
       "dotnet.native.d2w7colv7e.wasm": "dotnet.native.wasm",
@@ -212,8 +212,8 @@
       "System.Xml.Linq.fnt4rzi185.wasm": "sha256-5claBNmyy8L12DFLS17Fh4SBiTjwhYts3ds7g8dX8Gc=",
       "System.8rv0tdtrxz.wasm": "sha256-xMF0eauQ5DkSzUozHLFFMQnL6DSJO09nJLtgag+Dzbw=",
       "netstandard.admgtgj808.wasm": "sha256-wn0Scz8AZ/WamPqt/6w4mYaNjGUQYFwut8Jp9MJIQHM=",
-      "Nethereum.Erc20.Blazor.b3dii2pt06.wasm": "sha256-x3yN1optBe04jpBiXXmBytuKNMQqbsXrKxPbULt+B1k=",
-      "ExampleProject.Wasm.g2hdi91st7.wasm": "sha256-WELyOWDmbEqPlVWIwC2ethTglQPPT1fl6oVfEC7MhDA="
+      "Nethereum.Erc20.Blazor.msklfxm14s.wasm": "sha256-enAjN2BBKSPVfYWZqc5TuNB88jgE/DuKOFCp/6XGGCc=",
+      "ExampleProject.Wasm.bvebvsz8u9.wasm": "sha256-B78fMrZ4iVBNC6/QbYjesy+I/JLcnXSBk4kiqm0GemE="
     }
   },
   "cacheBootResources": true,
