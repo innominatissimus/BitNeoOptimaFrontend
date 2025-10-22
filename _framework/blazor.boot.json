@@ -1,14 +1,14 @@
 {
   "mainAssemblyName": "ExampleProject.Wasm",
   "resources": {
-    "hash": "sha256-nad9fAnPp8Tw+cSCeXeOPKJ+zG7fbEyLWGF47A7NVUs=",
+    "hash": "sha256-bBgFCNsUgH9M8s8ayyi7D1bSpBq2iAH6FzAqzOq5JLE=",
     "fingerprinting": {
       "Accelist.FluentValidation.Blazor.pr7y4ods17.wasm": "Accelist.FluentValidation.Blazor.wasm",
       "ADRaffy.ENSNormalize.wa9ywt4h2t.wasm": "ADRaffy.ENSNormalize.wasm",
       "FluentValidation.zbk23v52vx.wasm": "FluentValidation.wasm",
       "FluentValidation.DependencyInjectionExtensions.jybcvfa815.wasm": "FluentValidation.DependencyInjectionExtensions.wasm",
       "Microsoft.AspNetCore.Authorization.hc6mz7fa4v.wasm": "Microsoft.AspNetCore.Authorization.wasm",
-      "Microsoft.AspNetCore.Components.ibl8zlmp3r.wasm": "Microsoft.AspNetCore.Components.wasm",
+      "Microsoft.AspNetCore.Components.4djnm2zmy6.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Authorization.xgadllqwp6.wasm": "Microsoft.AspNetCore.Components.Authorization.wasm",
       "Microsoft.AspNetCore.Components.Forms.c7odkptwlj.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.Web.2xzfb2aljn.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -87,15 +87,15 @@
       "System.Security.Cryptography.Primitives.4fwnwgywjf.wasm": "System.Security.Cryptography.Primitives.wasm",
       "System.Security.Cryptography.bfwhk8anwp.wasm": "System.Security.Cryptography.wasm",
       "System.Text.Encodings.Web.hq94nfnuw2.wasm": "System.Text.Encodings.Web.wasm",
-      "System.Text.Json.njxdcx67yt.wasm": "System.Text.Json.wasm",
+      "System.Text.Json.5dc8s108fs.wasm": "System.Text.Json.wasm",
       "System.Text.RegularExpressions.5o1pyibme7.wasm": "System.Text.RegularExpressions.wasm",
       "System.Threading.n43x74n387.wasm": "System.Threading.wasm",
       "System.Xml.Linq.fnt4rzi185.wasm": "System.Xml.Linq.wasm",
       "System.8rv0tdtrxz.wasm": "System.wasm",
       "netstandard.admgtgj808.wasm": "netstandard.wasm",
-      "System.Private.CoreLib.1rrcy5jvxe.wasm": "System.Private.CoreLib.wasm",
-      "Nethereum.Erc20.Blazor.msklfxm14s.wasm": "Nethereum.Erc20.Blazor.wasm",
-      "ExampleProject.Wasm.bvebvsz8u9.wasm": "ExampleProject.Wasm.wasm",
+      "System.Private.CoreLib.yfnuh7ti1w.wasm": "System.Private.CoreLib.wasm",
+      "Nethereum.Erc20.Blazor.1cmj4yipuv.wasm": "Nethereum.Erc20.Blazor.wasm",
+      "ExampleProject.Wasm.bsn01smgc5.wasm": "ExampleProject.Wasm.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.l4ptthxatg.js": "dotnet.native.js",
       "dotnet.native.d2w7colv7e.wasm": "dotnet.native.wasm",
@@ -120,7 +120,7 @@
     },
     "coreAssembly": {
       "System.Runtime.InteropServices.JavaScript.it9v611w20.wasm": "sha256-dr2zPg+11BQOd27TZPxcs18PqUREGUfAtTD9nRdz7sw=",
-      "System.Private.CoreLib.1rrcy5jvxe.wasm": "sha256-fZ1mDN33P+8so7RjkNVKp4NnZyE1SSrRxA0Y0nIZwM0="
+      "System.Private.CoreLib.yfnuh7ti1w.wasm": "sha256-Lk8KvMUjX/BW5LpVRHMbR+0mmmyqTL3q3VV+fgQczPs="
     },
     "assembly": {
       "Accelist.FluentValidation.Blazor.pr7y4ods17.wasm": "sha256-1Q/uAFzzveo9HxAKQ2NVMaeezrd0OfSyO9eUqQ+TXoA=",
@@ -128,7 +128,7 @@
       "FluentValidation.zbk23v52vx.wasm": "sha256-b2JzXFcgVTwzVJd3kXDeH2s/FmC/keXUTK+ysOziejA=",
       "FluentValidation.DependencyInjectionExtensions.jybcvfa815.wasm": "sha256-dX0v80nZ8S7o+h9DxVBkqbdwUQjSlOVSBKcRA8utMzM=",
       "Microsoft.AspNetCore.Authorization.hc6mz7fa4v.wasm": "sha256-X0dU1jy/x0SOPk3sOX0RJYRlkfoS8FwbuvA3gUwYZJQ=",
-      "Microsoft.AspNetCore.Components.ibl8zlmp3r.wasm": "sha256-Esu6nZX9YFW3ItZQFLZwayIY31irQIzWn3gnVL0ICKs=",
+      "Microsoft.AspNetCore.Components.4djnm2zmy6.wasm": "sha256-OHDTarM0S1C5bTs0e2d52lTycmtsBU8MAwNLSOlGyHY=",
       "Microsoft.AspNetCore.Components.Authorization.xgadllqwp6.wasm": "sha256-Qb8DABkqmIhDHQy5u+onXB7R4KvjdwgS6LodGqJj/L4=",
       "Microsoft.AspNetCore.Components.Forms.c7odkptwlj.wasm": "sha256-yCPCDclQeR4FKDMqAsusw1gAexvQNFJV5RzsBkRde2g=",
       "Microsoft.AspNetCore.Components.Web.2xzfb2aljn.wasm": "sha256-lna7NrUkMb1SLISSIenDYCf310ckdHDkXMHlhFX8oLE=",
@@ -206,14 +206,14 @@
       "System.Security.Cryptography.Primitives.4fwnwgywjf.wasm": "sha256-IHwJNf5yOIfJ0Pzs5d+KsVr6C2mpQUlTp5ZExvXZVow=",
       "System.Security.Cryptography.bfwhk8anwp.wasm": "sha256-Z9IEqOr2GCgOytpAaIAn+EhPOBZp2Jj3369HK4cPOhY=",
       "System.Text.Encodings.Web.hq94nfnuw2.wasm": "sha256-SQ1+aS+lCxp43qhvbxWS01rhQfbvNeDSN0xyk2P9/Hc=",
-      "System.Text.Json.njxdcx67yt.wasm": "sha256-7URvLbBlS16jKeePkXQ939+4CMrlfmlFwwgCYhJVN4w=",
+      "System.Text.Json.5dc8s108fs.wasm": "sha256-Z89ATzIqX7iBI22wu1vtYCszcHGzi/x9Cn8Qb2rLm8g=",
       "System.Text.RegularExpressions.5o1pyibme7.wasm": "sha256-SxGe0rzYel38CyKlKlXfuaNnnpSkI6A5sweU05FVikY=",
       "System.Threading.n43x74n387.wasm": "sha256-6UqRWdm3o4KXzD7b46HRximIveguxatLkwTJzdxo1zE=",
       "System.Xml.Linq.fnt4rzi185.wasm": "sha256-5claBNmyy8L12DFLS17Fh4SBiTjwhYts3ds7g8dX8Gc=",
       "System.8rv0tdtrxz.wasm": "sha256-xMF0eauQ5DkSzUozHLFFMQnL6DSJO09nJLtgag+Dzbw=",
       "netstandard.admgtgj808.wasm": "sha256-wn0Scz8AZ/WamPqt/6w4mYaNjGUQYFwut8Jp9MJIQHM=",
-      "Nethereum.Erc20.Blazor.msklfxm14s.wasm": "sha256-enAjN2BBKSPVfYWZqc5TuNB88jgE/DuKOFCp/6XGGCc=",
-      "ExampleProject.Wasm.bvebvsz8u9.wasm": "sha256-B78fMrZ4iVBNC6/QbYjesy+I/JLcnXSBk4kiqm0GemE="
+      "Nethereum.Erc20.Blazor.1cmj4yipuv.wasm": "sha256-0aO7bCNI4+82de5r4kcMyYin9yGvsHpgU79aqq+jsGA=",
+      "ExampleProject.Wasm.bsn01smgc5.wasm": "sha256-a2kju2YCvUF6LdfTuT2nf5/eUM8B+XtBmEE5XH3Au7g="
     }
   },
   "cacheBootResources": true,
