@@ -41,7 +41,21 @@
             </div>
         </div>
 
-        <Erc4626Deposit></Erc4626Deposit>
+        <div class="mb-3">
+            <div class="btn-group" role="group" aria-label="Deposit or Redeem">
+                <button class="btn btn-outline-primary @(selectedOption == "Deposit" ? "active" : "")" @onclick="SelectDeposit">Deposit</button>
+                <button class="btn btn-outline-primary @(selectedOption == "Redeem" ? "active" : "")" @onclick="SelectRedeem">Redeem</button>
+            </div>
+        </div>
+
+        @if (selectedOption == "Deposit")
+        {
+            <Erc4626Deposit />
+        }
+        else
+        {
+            <Erc20Transfer />
+        }
 
         <div class="card m-1">
             <div class="card-body">
@@ -82,6 +96,9 @@
     string RecoveredAccountMessage { get; set; }
     protected string AuthenticatedAccount { get; set; }
     IEthereumHostProvider _ethereumHostProvider;
+
+    // Current state of switch: "Deposit" или "Redeem"
+    string selectedOption = "Deposit";
 
     protected override void OnInitialized()
     {
@@ -170,6 +187,16 @@
         {
             ErrorTransferMessage = ex.Message;
         }
+    }
+
+    void SelectDeposit()
+    {
+        selectedOption = "Deposit";
+    }
+
+    void SelectRedeem()
+    {
+        selectedOption = "Redeem";
     }
 }
 
