@@ -1,0 +1,105 @@
+﻿@using Nethereum.UI;
+@using FluentValidation;
+@using Accelist.FluentValidation.Blazor;
+@using Microsoft.AspNetCore.Components.Forms
+@using Nethereum.Contracts.Standards.ERC20.ContractDefinition
+@using Microsoft.AspNetCore.Components.Authorization
+@inject SelectedEthereumHostProviderService selectedHostProviderService;
+
+<AuthorizeView Roles="EthereumConnected">
+    <Authorized Context="Auth">
+        <div class="card">
+            <div class="card-body">
+                <EditForm Model="depositModel" OnValidSubmit="@DepositAsync">
+                    <FluentValidator Validator="@validator"></FluentValidator>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-1 col-form-label">Contract Address:</label>
+                        <div class="col-sm-10">
+                            <InputText id="TokenContractAddress" class="form-control" @bind-Value="depositModel.ContractModel.Address" type="text" />
+                            <small id="TokenContractAddressHelp" class="form-text text-muted">The ERC4626 contract address</small>
+                            <ValidationMessage For="() => depositModel.ContractModel.Address"></ValidationMessage>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-1 col-form-label">ERC4626 Decimals:</label>
+                        <div class="col-sm-10">
+                            <input id="TokenDecimalPlaces" class="form-control" @bind="depositModel.ContractModel.Decimals" type="text" />
+                            <small id="TokenDecimalPlacesHelp" class="form-text text-muted">Decimals of ERC4626 vault</small>
+                            <ValidationMessage For="() => depositModel.ContractModel.Decimals"></ValidationMessage>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="toAccount" class="col-sm-1 col-form-label">Receiver:</label>
+                        <div class="col-sm-10">
+                            <InputText id="toAccount" class="form-control" @bind-Value="depositModel.Receiver" type="text" />
+                            <small id="toAccountHelp" class="form-text text-muted">The account address, which will recevied vault shares</small>
+                            <ValidationMessage For="() => depositModel.Receiver"></ValidationMessage>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="etherAmount" class="col-sm-1 col-form-label">Assets:</label>
+                        <div class="col-sm-10">
+                            <input id="tokenAmount" class="form-control" @bind="depositModel.Assets" type="text" />
+                            <small id="tokenAmountHelp" class="form-text text-muted">The amount of assets to deposit</small>
+                            <ValidationMessage For="() => depositModel.Assets"></ValidationMessage>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <ValidationSummary></ValidationSummary>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            Deposit
+                        </button>
+                    </div>
+                </EditForm>
+                @if (TransactionHash != null)
+                {
+                    <div>Transaction Hash= @TransactionHash</div>
+                }
+
+                @if (ErrorDepositMessage != null)
+                {
+                    <div>An error has occurred= @ErrorDepositMessage</div>
+                }
+            </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+
+        <div>
+            Please connect to Ethereum !
+        </div>
+
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+    ERC4626DepositModel depositModel = new ERC4626DepositModel("0x751F0cC6115410A3eE9eC92d08f46Ff6Da98b708");
+    String TransactionHash { get; set; }
+    String ErrorDepositMessage { get; set; }
+    ERC4626DepositValidator validator = new ERC4626DepositValidator();
+
+    public async Task DepositAsync()
+    {
+        try
+        {
+            TransactionHash = null;
+
+            var functionDeposit = depositModel.GetDepositFunction();
+            var web3 = await selectedHostProviderService.SelectedHost.GetWeb3Async();
+            var contractHandler = web3.Eth.GetContractTransactionHandler<DepositFunction>();
+            TransactionHash = await contractHandler.SendRequestAsync(depositModel.ContractModel.Address, functionDeposit);
+            this.StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            ErrorDepositMessage = ex.Message;
+            this.StateHasChanged();
+        }
+    }
+
+}

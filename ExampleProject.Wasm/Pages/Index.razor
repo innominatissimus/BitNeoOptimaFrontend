@@ -41,19 +41,7 @@
             </div>
         </div>
 
-        <div class="card m-1">
-            <div class="card-body">
-                <div class="row">
-                    <label class="col-sm-3 col-form-label-lg">Block hash of latest block number:</label>
-                    <div class="col-sm-6">
-                        <button @onclick="@GetBlockHashAsync">Get BlockHash</button>
-                        <div>@BlockHash</div>
-                        <small id="selectedAccountHelp" class="form-text text-muted">With Metamask calls are redirected to its configured node</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <Erc20Transfer></Erc20Transfer>
+        <Erc4626Deposit></Erc4626Deposit>
 
         <div class="card m-1">
             <div class="card-body">
@@ -155,15 +143,6 @@
     {
         SelectedChainId = chainId;
         this.StateHasChanged();
-    }
-
-    protected async Task GetBlockHashAsync()
-    {
-        var web3 = await _ethereumHostProvider.GetWeb3Async();
-        // Request the latest block instead of block number 1
-        var block = await web3.Eth.Blocks.GetBlockWithTransactionsByNumber
-            .SendRequestAsync(Nethereum.RPC.Eth.DTOs.BlockParameter.CreateLatest());
-        BlockHash = block.BlockHash;
     }
 
     protected async Task ChangeChainToMainnet()
