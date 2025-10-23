@@ -1,4 +1,5 @@
-﻿@using Nethereum.UI;
+﻿@using Nethereum.Erc20.Blazor.Validators
+@using Nethereum.UI;
 @using FluentValidation;
 @using Accelist.FluentValidation.Blazor;
 @using Microsoft.AspNetCore.Components.Forms
@@ -10,39 +11,39 @@
     <Authorized Context="Auth">
         <div class="card">
             <div class="card-body">
-                <EditForm Model="depositModel" OnValidSubmit="@DepositAsync">
+                <EditForm Model="redeemModel" OnValidSubmit="@RedeemAsync">
                     <FluentValidator Validator="@validator"></FluentValidator>
                     <div class="form-group row">
                         <label for="" class="col-sm-1 col-form-label">Contract Address:</label>
                         <div class="col-sm-10">
-                            <InputText id="TokenContractAddress" class="form-control" @bind-Value="depositModel.ContractModel.Address" type="text" />
+                            <InputText id="TokenContractAddress" class="form-control" @bind-Value="redeemModel.ContractModel.Address" type="text" />
                             <small id="TokenContractAddressHelp" class="form-text text-muted">The ERC4626 contract address</small>
-                            <ValidationMessage For="() => depositModel.ContractModel.Address"></ValidationMessage>
+                            <ValidationMessage For="() => redeemModel.ContractModel.Address"></ValidationMessage>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-1 col-form-label">ERC4626 Decimals:</label>
                         <div class="col-sm-10">
-                            <input id="TokenDecimalPlaces" class="form-control" @bind="depositModel.ContractModel.Decimals" type="text" />
+                            <input id="TokenDecimalPlaces" class="form-control" @bind="redeemModel.ContractModel.Decimals" type="text" />
                             <small id="TokenDecimalPlacesHelp" class="form-text text-muted">Decimals of ERC4626 vault</small>
-                            <ValidationMessage For="() => depositModel.ContractModel.Decimals"></ValidationMessage>
+                            <ValidationMessage For="() => redeemModel.ContractModel.Decimals"></ValidationMessage>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="toAccount" class="col-sm-1 col-form-label">Receiver:</label>
                         <div class="col-sm-10">
-                            <InputText id="toAccount" class="form-control" @bind-Value="depositModel.Receiver" type="text" />
-                            <small id="toAccountHelp" class="form-text text-muted">The account address, which will recevied vault shares</small>
-                            <ValidationMessage For="() => depositModel.Receiver"></ValidationMessage>
+                            <InputText id="toAccount" class="form-control" @bind-Value="redeemModel.Receiver" type="text" />
+                            <small id="toAccountHelp" class="form-text text-muted">The account address, which will recevied assets</small>
+                            <ValidationMessage For="() => redeemModel.Receiver"></ValidationMessage>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="etherAmount" class="col-sm-1 col-form-label">Assets:</label>
+                        <label for="etherAmount" class="col-sm-1 col-form-label">Shares:</label>
                         <div class="col-sm-10">
-                            <input id="tokenAmount" class="form-control" @bind="depositModel.Assets" type="text" />
-                            <small id="tokenAmountHelp" class="form-text text-muted">The amount of assets to deposit</small>
-                            <ValidationMessage For="() => depositModel.Assets"></ValidationMessage>
+                            <input id="tokenAmount" class="form-control" @bind="redeemModel.Shares" type="text" />
+                            <small id="tokenAmountHelp" class="form-text text-muted">The amount of shares to redeem</small>
+                            <ValidationMessage For="() => redeemModel.Shares"></ValidationMessage>
                         </div>
                     </div>
 
@@ -60,9 +61,9 @@
                     <div>Transaction Hash= @TransactionHash</div>
                 }
 
-                @if (ErrorDepositMessage != null)
+                @if (ErrorRedeemMessage != null)
                 {
-                    <div>An error has occurred= @ErrorDepositMessage</div>
+                    <div>An error has occurred= @ErrorRedeemMessage</div>
                 }
             </div>
         </div>
@@ -78,28 +79,27 @@
 
 @code {
 
-    ERC4626DepositModel depositModel = new ERC4626DepositModel("0x751F0cC6115410A3eE9eC92d08f46Ff6Da98b708");
+    ERC4626RedeemModel redeemModel = new ERC4626RedeemModel("0x751F0cC6115410A3eE9eC92d08f46Ff6Da98b708");
     String TransactionHash { get; set; }
-    String ErrorDepositMessage { get; set; }
-    ERC4626DepositValidator validator = new ERC4626DepositValidator();
+    String ErrorRedeemMessage { get; set; }
+    ERC4626RedeemValidator validator = new ERC4626RedeemValidator();
 
-    public async Task DepositAsync()
+    public async Task RedeemAsync()
     {
         try
         {
             TransactionHash = null;
 
-            var functionDeposit = depositModel.GetDepositFunction();
+            var functionDeposit = redeemModel.GetRedeemFunction();
             var web3 = await selectedHostProviderService.SelectedHost.GetWeb3Async();
-            var contractHandler = web3.Eth.GetContractTransactionHandler<DepositFunction>();
-            TransactionHash = await contractHandler.SendRequestAsync(depositModel.ContractModel.Address, functionDeposit);
+            var contractHandler = web3.Eth.GetContractTransactionHandler<RedeemFunction>();
+            TransactionHash = await contractHandler.SendRequestAsync(redeemModel.ContractModel.Address, functionDeposit);
             this.StateHasChanged();
         }
         catch (Exception ex)
         {
-            ErrorDepositMessage = ex.Message;
+            ErrorRedeemMessage = ex.Message;
             this.StateHasChanged();
         }
     }
-
 }
