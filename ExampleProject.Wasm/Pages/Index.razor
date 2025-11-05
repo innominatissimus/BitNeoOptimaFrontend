@@ -62,9 +62,9 @@
                 <div class="row">
                     <label class="col-sm-3 col-form-label-lg">Change Chain</label>
                     <div class="col-sm-6">
-                        <button @onclick="@ChangeChainToMainnet">Change Chain To Mainnet</button>
+                        <button @onclick="@ChangeChainToMainnet">Change Chain To Sepolia</button>
 
-                        <small id="selectedAccountHelp" class="form-text text-muted">Changes the chain to Mainnet</small>
+                        <small id="selectedAccountHelp" class="form-text text-muted">Changes the chain to Sepolia testnet</small>
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@
         try
         {
             var web3 = await _ethereumHostProvider.GetWeb3Async();
-            var result = await web3.Eth.HostWallet.SwitchEthereumChain.SendRequestAsync(new SwitchEthereumChainParameter() { ChainId = new HexBigInteger(1) });
+            var result = await web3.Eth.HostWallet.SwitchEthereumChain.SendRequestAsync(new SwitchEthereumChainParameter() { ChainId = new HexBigInteger(11155111) });
         }
         catch (Exception ex)
         {
