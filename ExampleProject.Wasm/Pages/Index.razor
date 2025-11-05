@@ -50,11 +50,11 @@
 
         @if (selectedOption == "Deposit")
         {
-            <Erc4626Deposit />
+            <Erc4626Deposit SelectedAccount="@SelectedAccount" />
         }
         else
         {
-            <Erc4626Redeem />
+            <Erc4626Redeem SelectedAccount="@SelectedAccount" />
         }
 
         <div class="card m-1">

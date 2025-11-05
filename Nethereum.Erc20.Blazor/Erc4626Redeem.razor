@@ -1,4 +1,5 @@
-﻿@using Nethereum.Erc20.Blazor.Validators
+﻿@using Nethereum.Erc20.Blazor.Models
+@using Nethereum.Erc20.Blazor.Validators
 @using Nethereum.UI;
 @using FluentValidation;
 @using Accelist.FluentValidation.Blazor;
@@ -19,14 +20,6 @@
                             <InputText id="TokenContractAddress" class="form-control" @bind-Value="redeemModel.ContractModel.Address" type="text" />
                             <small id="TokenContractAddressHelp" class="form-text text-muted">The ERC4626 contract address</small>
                             <ValidationMessage For="() => redeemModel.ContractModel.Address"></ValidationMessage>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-1 col-form-label">ERC4626 Decimals:</label>
-                        <div class="col-sm-10">
-                            <input id="TokenDecimalPlaces" class="form-control" @bind="redeemModel.ContractModel.Decimals" type="text" />
-                            <small id="TokenDecimalPlacesHelp" class="form-text text-muted">Decimals of ERC4626 vault</small>
-                            <ValidationMessage For="() => redeemModel.ContractModel.Decimals"></ValidationMessage>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -52,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">
-                            Deposit
+                            Redeem
                         </button>
                     </div>
                 </EditForm>
@@ -78,11 +71,50 @@
 </AuthorizeView>
 
 @code {
+    [Parameter]
+    public string SelectedAccount { get; set; }
 
     ERC4626RedeemModel redeemModel = new ERC4626RedeemModel("0xe079E98d0Be820112E84073dcB0e794e4d4C3aEE");
     String TransactionHash { get; set; }
     String ErrorRedeemMessage { get; set; }
     ERC4626RedeemValidator validator = new ERC4626RedeemValidator();
+
+    protected override void OnParametersSet()
+    {
+        // Set the receiver to the selected account if provided
+        if (!String.IsNullOrEmpty(SelectedAccount))
+        {
+            redeemModel.Receiver = SelectedAccount;
+            redeemModel.Owner = SelectedAccount;
+        }
+
+        base.OnParametersSet();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            TransactionHash = null;
+            ErrorRedeemMessage = null;
+
+            var web3 = await selectedHostProviderService.SelectedHost.GetWeb3Async();
+
+            // Static call to read decimals (no transaction)
+            var queryHandler = web3.Eth.GetContractQueryHandler<DecimalsFunction>();
+            var decimals = await queryHandler.QueryAsync<Byte>(redeemModel.ContractModel.Address, new DecimalsFunction());
+
+            redeemModel.ContractModel.Decimals = decimals;
+            this.StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            ErrorRedeemMessage = ex.Message;
+            this.StateHasChanged();
+        }
+
+        await base.OnInitializedAsync();
+    }
 
     public async Task RedeemAsync()
     {

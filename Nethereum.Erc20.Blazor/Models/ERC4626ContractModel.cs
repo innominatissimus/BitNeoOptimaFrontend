@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nethereum.ABI.FunctionEncoding.Attributes;
+using Nethereum.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,4 +21,7 @@ namespace Nethereum.Erc20.Blazor.Models
 			Address = address;
 		}
 	}
+
+	[Function("decimals", "uint8")]
+	public class DecimalsFunction : FunctionMessage;
 }

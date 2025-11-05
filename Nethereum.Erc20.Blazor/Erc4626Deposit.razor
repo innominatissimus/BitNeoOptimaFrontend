@@ -1,4 +1,5 @@
-﻿@using Nethereum.UI;
+﻿@using Nethereum.Erc20.Blazor.Models
+@using Nethereum.UI;
 @using FluentValidation;
 @using Accelist.FluentValidation.Blazor;
 @using Microsoft.AspNetCore.Components.Forms
@@ -18,14 +19,6 @@
                             <InputText id="TokenContractAddress" class="form-control" @bind-Value="depositModel.ContractModel.Address" type="text" />
                             <small id="TokenContractAddressHelp" class="form-text text-muted">The ERC4626 contract address</small>
                             <ValidationMessage For="() => depositModel.ContractModel.Address"></ValidationMessage>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-1 col-form-label">ERC4626 Decimals:</label>
-                        <div class="col-sm-10">
-                            <input id="TokenDecimalPlaces" class="form-control" @bind="depositModel.ContractModel.Decimals" type="text" />
-                            <small id="TokenDecimalPlacesHelp" class="form-text text-muted">Decimals of ERC4626 vault</small>
-                            <ValidationMessage For="() => depositModel.ContractModel.Decimals"></ValidationMessage>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -77,11 +70,49 @@
 </AuthorizeView>
 
 @code {
+    [Parameter]
+    public string SelectedAccount { get; set; }
 
     ERC4626DepositModel depositModel = new ERC4626DepositModel("0xe079E98d0Be820112E84073dcB0e794e4d4C3aEE");
     String TransactionHash { get; set; }
     String ErrorDepositMessage { get; set; }
     ERC4626DepositValidator validator = new ERC4626DepositValidator();
+
+    protected override void OnParametersSet()
+    {
+        // Set the receiver to the selected account if provided
+        if (!String.IsNullOrEmpty(SelectedAccount))
+        {
+            depositModel.Receiver = SelectedAccount;
+        }
+
+        base.OnParametersSet();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            TransactionHash = null;
+            ErrorDepositMessage = null;
+
+            var web3 = await selectedHostProviderService.SelectedHost.GetWeb3Async();
+
+            // Static call to read decimals (no transaction)
+            var queryHandler = web3.Eth.GetContractQueryHandler<DecimalsFunction>();
+            var decimals = await queryHandler.QueryAsync<Byte>(depositModel.ContractModel.Address, new DecimalsFunction());
+
+            depositModel.ContractModel.Decimals = decimals;
+            this.StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            ErrorDepositMessage = ex.Message;
+            this.StateHasChanged();
+        }
+
+        await base.OnInitializedAsync();
+    }
 
     public async Task DepositAsync()
     {
@@ -101,5 +132,4 @@
             this.StateHasChanged();
         }
     }
-
 }
