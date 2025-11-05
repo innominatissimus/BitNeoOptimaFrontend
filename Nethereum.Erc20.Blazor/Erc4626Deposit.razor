@@ -120,8 +120,14 @@
         {
             TransactionHash = null;
 
-            var functionDeposit = depositModel.GetDepositFunction();
             var web3 = await selectedHostProviderService.SelectedHost.GetWeb3Async();
+
+            var approveFunction = depositModel.GetApproveFunction();
+            var approveHandler = web3.Eth.GetContractTransactionHandler<ApproveFunction>();
+            TransactionHash = approveHandler.SendRequestAsync(depositModel.ContractModel.Address, approveFunction).Result;
+
+            var functionDeposit = depositModel.GetDepositFunction();
+            
             var contractHandler = web3.Eth.GetContractTransactionHandler<DepositFunction>();
             TransactionHash = await contractHandler.SendRequestAsync(depositModel.ContractModel.Address, functionDeposit);
             this.StateHasChanged();

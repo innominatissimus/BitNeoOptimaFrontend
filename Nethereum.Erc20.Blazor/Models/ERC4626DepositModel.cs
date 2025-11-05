@@ -29,6 +29,15 @@ namespace Nethereum.Erc20.Blazor
 				Receiver = Receiver
 			};
 		}
+
+		public ApproveFunction GetApproveFunction()
+		{
+			return new ApproveFunction()
+			{
+				Spender = ContractModel.Address,
+				Value = UInt128.MaxValue
+			};
+		}
 	}
 
 	// Deposit function definition for ERC4626
@@ -40,5 +49,14 @@ namespace Nethereum.Erc20.Blazor
 
 		[Parameter("address", "receiver", 2)]
 		public String Receiver { get; set; }
+	}
+
+	[Function("approve", "bool")]
+	public class ApproveFunction : FunctionMessage
+	{
+		[Parameter("address", "_spender", 1)]
+		public String Spender { get; set; }
+		[Parameter("uint256", "_value", 2)]
+		public BigInteger Value { get; set; }
 	}
 }
