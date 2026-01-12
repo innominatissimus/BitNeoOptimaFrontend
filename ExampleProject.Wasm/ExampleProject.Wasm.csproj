@@ -13,9 +13,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
-    <PackageReference Include="Nethereum.Metamask.Blazor" Version="4.28.0" />
-    <PackageReference Include="Nethereum.UI" Version="4.28.0" />
-    <PackageReference Include="Nethereum.Web3" Version="4.28.0" />
+    <PackageReference Include="Nethereum.Metamask.Blazor" Version="5.8.0" />
+    <PackageReference Include="Nethereum.UI" Version="5.8.0" />
+    <PackageReference Include="Nethereum.Web3" Version="5.8.0" />
     <PackageReference Include="System.Net.Http.Json" Version="9.0.1" />
     <PackageReference Include="System.Text.Json" Version="9.0.1" />
   </ItemGroup>
