@@ -7,14 +7,9 @@ using Nethereum.Erc20.Blazor.Models;
 
 namespace Nethereum.Erc20.Blazor.Models
 {
-	public class ERC4626DepositModel
+	public class ERC4626DepositModel(String address)
 	{
-		public ERC4626DepositModel(String address)
-		{
-			ContractModel = new ERC4626ContractModel(address);
-		}
-
-		public ERC4626ContractModel ContractModel { get; set; }
+		public ERC4626ContractModel ContractModel { get; set; } = new ERC4626ContractModel(address);
 		public Decimal Assets { get; set; }
 		public String Receiver { get; set; }
 

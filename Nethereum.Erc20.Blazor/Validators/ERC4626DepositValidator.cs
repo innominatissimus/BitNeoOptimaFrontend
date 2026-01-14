@@ -8,7 +8,7 @@ using Nethereum.UI.Validation;
 using Microsoft.AspNetCore.Components;
 using Nethereum.Erc20.Blazor.Models;
 
-namespace Nethereum.Erc20.Blazor
+namespace Nethereum.Erc20.Blazor.Validators
 {
 	public class ERC4626DepositValidator : AbstractValidator<ERC4626DepositModel>
 	{

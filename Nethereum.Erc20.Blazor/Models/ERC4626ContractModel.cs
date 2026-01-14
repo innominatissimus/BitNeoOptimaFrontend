@@ -8,18 +8,13 @@ using System.Threading.Tasks;
 
 namespace Nethereum.Erc20.Blazor.Models
 {
-	public class ERC4626ContractModel
+	public class ERC4626ContractModel(String address)
 	{
-		public String Address { get; set; }
+		public String Address { get; set; } = address;
 
 		public String Name { get; set; }
 
 		public Byte Decimals { get; set; }
-
-		public ERC4626ContractModel(String address)
-		{
-			Address = address;
-		}
 	}
 
 	[Function("decimals", "uint8")]
