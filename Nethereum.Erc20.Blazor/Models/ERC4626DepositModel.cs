@@ -5,7 +5,7 @@ using System;
 using System.Numerics;
 using Nethereum.Erc20.Blazor.Models;
 
-namespace Nethereum.Erc20.Blazor
+namespace Nethereum.Erc20.Blazor.Models
 {
 	public class ERC4626DepositModel
 	{

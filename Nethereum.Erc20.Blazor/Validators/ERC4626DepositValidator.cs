@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nethereum.UI.Validation;
 using Microsoft.AspNetCore.Components;
+using Nethereum.Erc20.Blazor.Models;
 
 namespace Nethereum.Erc20.Blazor
 {
